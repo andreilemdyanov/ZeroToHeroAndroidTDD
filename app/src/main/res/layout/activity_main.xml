@@ -16,14 +16,15 @@
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
-        android:freezesText="true"
         android:layout_height="wrap_content"
+        android:freezesText="true"
         android:text="Hello World!" />
 
     <Button
         android:id="@+id/actionButton"
-        android:text="change"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="change" />
 
 </LinearLayout>

@@ -1,7 +1,10 @@
 package ru.easycode.zerotoheroandroidtdd
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import ru.easycode.zerotoheroandroidtdd.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +17,10 @@ class MainActivity : AppCompatActivity() {
         binding.actionButton.setOnClickListener {
             binding.titleTextView.text = binding.inputEditText.text
             binding.inputEditText.setText("")
+        }
+
+        binding.inputEditText.addTextChangedListener {
+            binding.actionButton.isEnabled = binding.inputEditText.text.toString().length > 2
         }
     }
 }

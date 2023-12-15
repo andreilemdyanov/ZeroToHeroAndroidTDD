@@ -16,6 +16,7 @@ interface BundleWrapper {
     interface Mutable : Save, Restore
 
     class Base(private val bundle: Bundle) : Mutable {
+
         override fun save(uiState: UiState) {
             bundle.putSerializable(KEY, uiState)
         }

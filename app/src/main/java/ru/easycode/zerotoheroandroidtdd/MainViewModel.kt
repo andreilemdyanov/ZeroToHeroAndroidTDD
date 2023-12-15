@@ -8,17 +8,17 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val liveDataWrapper: LiveDataWrapper,
+    private val liveDataWrapper: LiveDataWrapper.Mutable,
     private val repository: Repository
 ) {
 
     private val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     fun load() {
-        liveDataWrapper.update(UiState.ShowProgress)
+        LoadResult.Progress.show(liveDataWrapper)
         viewModelScope.launch {
             val response = repository.load()
-            liveDataWrapper.update(UiState.ShowData(response.text))
+            response.show(liveDataWrapper)
         }
     }
 

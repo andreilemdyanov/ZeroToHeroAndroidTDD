@@ -6,11 +6,12 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import java.io.Serializable
 
-interface UiState: Serializable {
+interface UiState : Serializable {
 
     fun apply(titleTextView: TextView, actionButton: Button, progressBar: ProgressBar)
 
     object ShowProgress : UiState {
+
         override fun apply(
             titleTextView: TextView,
             actionButton: Button,
@@ -23,6 +24,7 @@ interface UiState: Serializable {
     }
 
     data class ShowData(private val text: String) : UiState {
+
         override fun apply(
             titleTextView: TextView,
             actionButton: Button,

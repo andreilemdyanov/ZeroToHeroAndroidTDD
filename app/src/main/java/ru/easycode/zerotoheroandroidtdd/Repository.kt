@@ -1,12 +1,23 @@
 package ru.easycode.zerotoheroandroidtdd
 
+import java.net.UnknownHostException
+
 interface Repository {
-    suspend fun load(): SimpleResponse
+
+    suspend fun load(): LoadResult
 
     class Base(
         private val service: SimpleService,
         private val url: String
     ) : Repository {
-        override suspend fun load() = service.fetch(url)
+
+        override suspend fun load(): LoadResult =
+            try {
+                LoadResult.Success(service.fetch(url))
+            } catch (e: UnknownHostException) {
+                LoadResult.Error(true)
+            } catch (e: IllegalStateException) {
+                LoadResult.Error(false)
+            }
     }
 }
